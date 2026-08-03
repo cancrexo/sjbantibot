@@ -128,11 +128,11 @@ class SjbAntibotGuard
     public function isIpBlocked(string $ip): bool
     {
         $blockMinutes = (int) ($this->config['block_minutes'] ?? 30);
+        // getValue() ya añade LIMIT 1; no duplicarlo
         $sql = 'SELECT 1 FROM `' . _DB_PREFIX_ . self::TABLE . '`
             WHERE `ip` = "' . pSQL($ip) . '"
               AND `reason` = "' . pSQL(self::REASON_RATE) . '"
-              AND `created_at` >= DATE_SUB(NOW(), INTERVAL ' . (int) $blockMinutes . ' MINUTE)
-            LIMIT 1';
+              AND `created_at` >= DATE_SUB(NOW(), INTERVAL ' . (int) $blockMinutes . ' MINUTE)';
 
         return (bool) Db::getInstance()->getValue($sql);
     }
