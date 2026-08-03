@@ -1,0 +1,39 @@
+/**
+ * Oculta el campo trampa (company_url) del registro.
+ * Los errores del grupo se dejan ver si el tema marca .has-error.
+ */
+.form-group:has(input[name="company_url"]) label,
+.form-group:has(input[name="company_url"]) input[name="company_url"],
+.form-group:has(input[name="company_url"]) > .form-control-comment,
+div:has(> input[name="company_url"]) > label {
+    position: absolute !important;
+    left: -10000px !important;
+    top: auto !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+}
+
+/* Fallback sin :has() — el JS añade .sjbantibot-hp */
+.sjbantibot-hp:not(.has-error):not(.sjbantibot-hp-show-error) {
+    position: absolute !important;
+    left: -10000px !important;
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+}
+
+.sjbantibot-hp.has-error label,
+.sjbantibot-hp.has-error input[name="company_url"],
+.sjbantibot-hp.sjbantibot-hp-show-error label,
+.sjbantibot-hp.sjbantibot-hp-show-error input[name="company_url"] {
+    position: absolute !important;
+    left: -10000px !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+}
